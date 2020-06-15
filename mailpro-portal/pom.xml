@@ -18,10 +18,10 @@
             <groupId>com.haojing.mailpro</groupId>
             <artifactId>mailpro-mbg</artifactId>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>com.haojing.mailpro</groupId>
             <artifactId>mailpro-security</artifactId>
-        </dependency>-->
+        </dependency>
 
       <!--  <dependency>
             <groupId>com.aliyun.oss</groupId>

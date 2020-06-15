@@ -1,11 +1,18 @@
 package com.haojing.mailpro.portal.domain;
 
 
+import com.haojing.mailpro.mbg.model.UmsMember;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * 会员详情封装
  * Created by macro on 2018/8/3.
- *//*
+ */
 
 public class MemberDetails implements UserDetails {
     private UmsMember umsMember;
@@ -54,4 +61,3 @@ public class MemberDetails implements UserDetails {
         return umsMember;
     }
 }
-*/
