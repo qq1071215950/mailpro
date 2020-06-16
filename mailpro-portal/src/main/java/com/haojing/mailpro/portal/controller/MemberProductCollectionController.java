@@ -25,7 +25,6 @@ public class MemberProductCollectionController {
 
     @ApiOperation("添加商品收藏")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ResponseBody
     public CommonResult add(@RequestBody MemberProductCollection productCollection) {
         int count = memberCollectionService.add(productCollection);
         if (count > 0) {
@@ -37,7 +36,6 @@ public class MemberProductCollectionController {
 
     @ApiOperation("删除收藏商品")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    @ResponseBody
     public CommonResult delete(Long productId) {
         int count = memberCollectionService.delete(productId);
         if (count > 0) {
@@ -49,7 +47,6 @@ public class MemberProductCollectionController {
 
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
     public CommonResult<CommonPage<MemberProductCollection>> list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         Page<MemberProductCollection> page = memberCollectionService.list(pageNum,pageSize);

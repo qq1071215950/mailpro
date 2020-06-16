@@ -33,7 +33,6 @@ public class UmsMemberController {
 
     @ApiOperation("会员注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseBody
     public CommonResult register(@RequestParam String username,
                                  @RequestParam String password,
                                  @RequestParam String telephone,
@@ -44,7 +43,6 @@ public class UmsMemberController {
 
     @ApiOperation("会员登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
     public CommonResult login(@RequestParam String username,
                               @RequestParam String password) {
         String token = memberService.login(username, password);
@@ -59,7 +57,6 @@ public class UmsMemberController {
 
     @ApiOperation("获取会员信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    @ResponseBody
     public CommonResult info(Principal principal) {
         if(principal==null){
             return CommonResult.unauthorized(null);
@@ -70,7 +67,6 @@ public class UmsMemberController {
 
     @ApiOperation("获取验证码")
     @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
-    @ResponseBody
     public CommonResult getAuthCode(@RequestParam String telephone) {
         String authCode = memberService.generateAuthCode(telephone);
         return CommonResult.success(authCode,"获取验证码成功");
@@ -78,7 +74,6 @@ public class UmsMemberController {
 
     @ApiOperation("修改密码")
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-    @ResponseBody
     public CommonResult updatePassword(@RequestParam String telephone,
                                        @RequestParam String password,
                                        @RequestParam String authCode) {
@@ -89,7 +84,6 @@ public class UmsMemberController {
 
     @ApiOperation(value = "刷新token")
     @RequestMapping(value = "/refreshToken", method = RequestMethod.GET)
-    @ResponseBody
     public CommonResult refreshToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String refreshToken = memberService.refreshToken(token);
