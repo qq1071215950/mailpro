@@ -1,14 +1,9 @@
 package com.haojing.mailpro.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author jiange
- * @date 2020/6/18 10:31
- */
 public class UmsMenu implements Serializable {
     private Long id;
 
