@@ -47,6 +47,7 @@ secure:
       - /admin/logout
       - /minio/upload
       - /memberLevel/list
+      - /resourceCategory/*
 
 aliyun:
   oss:
