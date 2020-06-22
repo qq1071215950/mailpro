@@ -1,4 +1,4 @@
-package com.haojing.mailpro.admin.controller;
+package com.haojing.mailpro.admin.controller.ums;
 
 import com.haojing.mailpro.admin.dto.UmsAdminLoginParam;
 import com.haojing.mailpro.admin.dto.UmsAdminParam;

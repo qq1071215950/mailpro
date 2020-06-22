@@ -1,4 +1,4 @@
-package com.haojing.mailpro.admin.controller;
+package com.haojing.mailpro.admin.controller.ums;
 
 import com.haojing.mailpro.admin.service.UmsResourceCategoryService;
 import com.haojing.mailpro.common.api.CommonResult;
