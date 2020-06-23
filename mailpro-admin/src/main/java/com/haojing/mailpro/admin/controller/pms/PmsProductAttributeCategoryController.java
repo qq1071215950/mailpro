@@ -1,8 +1,16 @@
 package com.haojing.mailpro.admin.controller.pms;
 
+import com.haojing.mailpro.admin.dto.PmsProductAttributeCategoryItem;
+import com.haojing.mailpro.admin.service.PmsProductAttributeCategoryService;
+import com.haojing.mailpro.common.api.CommonPage;
+import com.haojing.mailpro.common.api.CommonResult;
+import com.haojing.mailpro.mbg.model.PmsProductAttributeCategory;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 商品属性分类Controller
@@ -14,4 +22,61 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/productAttribute/category")
 public class PmsProductAttributeCategoryController {
 
+    @Autowired
+    private PmsProductAttributeCategoryService productAttributeCategoryService;
+
+    @ApiOperation("添加商品属性分类")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public CommonResult create(@RequestParam String name) {
+        int count = productAttributeCategoryService.create(name);
+        if (count > 0) {
+            return CommonResult.success(count);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @ApiOperation("修改商品属性分类")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public CommonResult update(@PathVariable Long id, @RequestParam String name) {
+        int count = productAttributeCategoryService.update(id, name);
+        if (count > 0) {
+            return CommonResult.success(count);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @ApiOperation("删除单个商品属性分类")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public CommonResult delete(@PathVariable Long id) {
+        int count = productAttributeCategoryService.delete(id);
+        if (count > 0) {
+            return CommonResult.success(count);
+        } else {
+            return CommonResult.failed();
+        }
+    }
+
+    @ApiOperation("获取单个商品属性分类信息")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public CommonResult<PmsProductAttributeCategory> getItem(@PathVariable Long id) {
+        PmsProductAttributeCategory productAttributeCategory = productAttributeCategoryService.getItem(id);
+        return CommonResult.success(productAttributeCategory);
+    }
+
+    @ApiOperation("分页获取所有商品属性分类")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public CommonResult<CommonPage<PmsProductAttributeCategory>> getList(@RequestParam(defaultValue = "5") Integer pageSize, @RequestParam(defaultValue = "1") Integer pageNum) {
+        List<PmsProductAttributeCategory> productAttributeCategoryList = productAttributeCategoryService.getList(pageSize, pageNum);
+        return CommonResult.success(CommonPage.restPage(productAttributeCategoryList));
+    }
+
+    @ApiOperation("获取所有商品属性分类及其下属性")
+    @RequestMapping(value = "/list/withAttr", method = RequestMethod.GET)
+    public CommonResult<List<PmsProductAttributeCategoryItem>> getListWithAttr() {
+        List<PmsProductAttributeCategoryItem> productAttributeCategoryResultList = productAttributeCategoryService.getListWithAttr();
+        return CommonResult.success(productAttributeCategoryResultList);
+    }
 }
+
