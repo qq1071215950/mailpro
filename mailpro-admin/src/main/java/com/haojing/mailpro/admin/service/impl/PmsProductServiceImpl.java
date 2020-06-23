@@ -97,7 +97,9 @@ public class PmsProductServiceImpl implements PmsProductService {
     }
 
     private void handleSkuStockCode(List<PmsSkuStock> skuStockList, Long productId) {
-        if(CollectionUtils.isEmpty(skuStockList))return;
+        if(CollectionUtils.isEmpty(skuStockList)) {
+            return;
+        }
         for(int i=0;i<skuStockList.size();i++){
             PmsSkuStock skuStock = skuStockList.get(i);
             if(StringUtils.isEmpty(skuStock.getSkuCode())){
@@ -311,7 +313,9 @@ public class PmsProductServiceImpl implements PmsProductService {
      */
     private void relateAndInsertList(Object dao, List dataList, Long productId) {
         try {
-            if (CollectionUtils.isEmpty(dataList)) return;
+            if (CollectionUtils.isEmpty(dataList)) {
+                return;
+            }
             for (Object item : dataList) {
                 Method setId = item.getClass().getMethod("setId", Long.class);
                 setId.invoke(item, (Long) null);
